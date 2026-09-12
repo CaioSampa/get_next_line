@@ -43,6 +43,20 @@ The core challenge of **Get Next Line** is reading a file in chunks of arbitrary
 
 You need a C compiler (`gcc` or `clang`) and `make` installed on your UNIX system.
 
+## Resources
+### References 
+- Linux Manual Page (https://man7.org/linux/man-pages/man2/read.2.html): read(2) — Official POSIX documentation for the read system call.
+
+- GeeksforGeeks (https://www.geeksforgeeks.org/c/static-variables-in-c/): Static Variables in C — Detailed explanation of static duration storage in C.
+
+- Valgrind Documentation (https://valgrind.org/docs/manual/quick-start.html)— Tool for memory debugging and leak detection.
+
+## AI use
+### In accordance with the 42 guidelines, AI tools (such as ChatGPT / Claude / Gemini) were utilized during this project for the following tasks:
+- Debugging & Profiling: Identifying performance bottlenecks (quadratic time complexity $O(N^2)$ causing timeouts on extremely long lines with small BUFFER_SIZE) and suggesting algorithm optimizations.
+- Norminette Compliance: Refactoring functions to adhere to the 42 Norm (e.g., keeping functions under 25 lines, optimizing helper function splits).
+- ocumentation: Assisting in structuring and formatting this README.md file.
+
 ### Compilation
 
 Include `get_next_line.c`, `get_next_line_utils.c`, and `get_next_line.h` in your project compilation. You can set a custom `BUFFER_SIZE` at compile time using the `-D` flag:
