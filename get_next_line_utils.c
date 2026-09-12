@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: casampai, fnunes-d <casampai, fnunes-d@    +#+  +:+       +#+        */
+/*   By: casampai <casampai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 14:08:06 by casampai          #+#    #+#             */
-/*   Updated: 2026/09/12 06:02:51 by casampai, f      ###   ########.fr       */
+/*   Updated: 2026/09/12 16:47:55 by casampai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,32 @@ char	*find_chr(const char *s, int c)
 {
 	char	*ptr_s;
 
-	if(!s)
+	if (!s)
 		return (NULL);
 	ptr_s = (char *)s;
-	while (*ptr_s){
-		if(*ptr_s == c)
+	while (*ptr_s)
+	{
+		if (*ptr_s == c)
 			return (ptr_s);
 		ptr_s++;
 	}
-	if(*ptr_s == (char)c)
+	if (*ptr_s == (char)c)
 		return (ptr_s);
-	return(NULL);
+	return (NULL);
 }
 
 int	get_str_len(char *str)
 {
-	int i; 
-	
+	int	i;
+
 	i = 0;
 	while (str[i])
 		i++;
-	return(i);
+	return (i);
 }
 
-char	*join_string(char *stash, char *buffer)
+static char	*init_stash(char *stash)
 {
-	char	*new_stash;
-	int		i;
-	int		j;
 	if (!stash)
 	{
 		stash = (char *)malloc(1 * sizeof(char));
@@ -51,12 +49,23 @@ char	*join_string(char *stash, char *buffer)
 			return (NULL);
 		stash[0] = '\0';
 	}
-	if (!buffer)
+	return (stash);
+}
+
+char	*join_string(char *stash, char *buffer)
+{
+	char	*new_stash;
+	int		i;
+	int		j;
+
+	stash = init_stash(stash);
+	if (!stash || !buffer)
 		return (free(stash), NULL);
-	i = 0;
-	new_stash = malloc(sizeof(char) * ((get_str_len(stash) + get_str_len(buffer) + 1)));
+	new_stash = malloc(sizeof(char)
+			* (get_str_len(stash) + get_str_len(buffer) + 1));
 	if (!new_stash)
 		return (free(stash), NULL);
+	i = 0;
 	j = 0;
 	while (stash[j])
 		new_stash[i++] = stash[j++];
@@ -67,4 +76,3 @@ char	*join_string(char *stash, char *buffer)
 	free(stash);
 	return (new_stash);
 }
-
